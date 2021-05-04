@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.7)  4 MAY 2021 02:51
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.7)  4 MAY 2021 03:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -620,61 +620,59 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [2] [3] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [4] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
+) [4] [5] (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [5]
+) [6]
 File: color_transform_visualization.png Graphic file (type bmp)
 <color_transform_visualization.png>
+ [7]
+File: CNN.png Graphic file (type bmp)
+<CNN.png>
+ [8]
+Missing character: There is no ’ in font cmr10!
+ [9] [10]
+File: topAngel.png Graphic file (type bmp)
+<topAngel.png>
+File: ShadowEdge.png Graphic file (type bmp)
+<ShadowEdge.png>
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6]
-File: CNN.png Graphic file (type bmp)
-<CNN.png>
- [7] [8]
-Missing character: There is no ’ in font cmr10!
- [9]
-File: topAngel.png Graphic file (type bmp)
-<topAngel.png>
- [10]
-File: ShadowEdge.png Graphic file (type bmp)
-<ShadowEdge.png>
 File: blackground.png Graphic file (type bmp)
 <blackground.png>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 File: result_black_background.png Graphic file (type bmp)
 <result_black_background.png>
- [11] [12] [13] [14]
+[11] [12] [13] [14] [15]
 File: obstacles_trapped.png Graphic file (type bmp)
 <obstacles_trapped.png>
- [15]
 File: A2C_Arch.png Graphic file (type bmp)
 <A2C_Arch.png>
+ [16]
 File: A2C_eq.png Graphic file (type bmp)
 <A2C_eq.png>
- [16] [17] [18]
+ [17] [18] [19]
 File: ControlAgent.png Graphic file (type bmp)
 <ControlAgent.png>
- [19]
+ [20]
 File: trap.png Graphic file (type bmp)
 <trap.png>
 File: SecondAgent.png Graphic file (type bmp)
 <SecondAgent.png>
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[20]
+ [21]
 File: ThirdAgent.png Graphic file (type bmp)
 <ThirdAgent.png>
- [21] (./main.aux) ) 
+ [22] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  18386 strings out of 479418
  362771 string characters out of 5884586
- 935545 words of memory out of 5000000
+ 930284 words of memory out of 5000000
  35532 multiletter control sequences out of 15000+600000
  538924 words of font info for 68 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 68i,19n,71p,940b,1558s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,19n,71p,940b,1586s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (21 pages).
+Output written on main.pdf (22 pages).
