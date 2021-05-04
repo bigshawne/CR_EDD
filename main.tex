@@ -102,10 +102,66 @@ Week 6 - Week 8 & Built the model and started to tuning parameters \\
 \section{Existing Solution}
 So far, we have built a neural network model that are composed by three parts: computer vision, reinforcement learning, and automating the game playing. 
 
+\subsection{Game Modification}
+We notice that the existing version of the web version fo the game could not satisfy some of the needs of our model. 
+
+\subsubsection{Pause/Resume Feature}
+Specifically, the existing version does not support resume/pause function. Without the resume/pause  it can take considerable amount of time for our model to predict the next action for the agent, and the game state will change and be different from the state fed to the model. \par 
+
+However, the ThreeJS framework does not have the built-in function to pause or resume the animate process. We take a bypass solution. Firstly, we create a global boolean variable to check if the game is pause. Secondly, we add an event listener to check if the user hit the "P" key in the keyboard, which is designed to pause or resume the game.
+
+\begin{lstlisting}[language = Java]
+// Declare a global boolean variable to record if the game is paused. 
+let paused = false;
+
+// Event listener
+window.addEventListener("keydown", event => {
+  if ((event.keyCode == '38') && (!gameOver) && (!paused)) {
+    move('forward');
+  }  if ((event.keyCode == '40') && (!gameOver) && (!paused)) {
+    move('backward');
+  } else if ((event.keyCode == '37') && (!gameOver) && (!paused)) {
+    move('left');
+  } else if ((event.keyCode == '39') && (!gameOver) && (!paused)) {
+    move('right');
+  } else if ((event.keyCode == '13') && (!gameOver)) {
+    // Change the state of the game between pause and resume
+    paused = !paused;
+  }
+});
+\end{lstlisting}
+
+Next, we need to modify the customized the animate function. There are three parts: animate game scene according to the frame rate per second, execute the action from the agent, and do the hit test. To implement the pause/resume feature, we just let animate function to check the global paused variable, and do not execute the first two animate action. 
+
+\begin{lstlisting}[language = Java]
+    lanes.forEach(lane => {
+        if ((lane.type === 'car' || lane.type === 'truck') && (!paused)) {
+          const aBitBeforeTheBeginingOfLane = -boardWidth * zoom / 2 - positionWidth * 2 * zoom;
+          const aBitAfterTheEndOFLane = boardWidth * zoom / 2 + positionWidth * 2 * zoom;
+          lane.vechicles.forEach(vechicle => {
+            if (lane.direction) {
+              vechicle.position.x = vechicle.position.x < aBitBeforeTheBeginingOfLane ? aBitAfterTheEndOFLane : vechicle.position.x -= lane.speed / 16 * delta;
+            } else {
+              vechicle.position.x = vechicle.position.x > aBitAfterTheEndOFLane ? aBitBeforeTheBeginingOfLane : vechicle.position.x += lane.speed / 16 * delta;
+            }
+          });
+        }
+      });
+\end{lstlisting}
+
+\subsubsection{Passing Image through RAM}
+Unfortunately, the Selenium API is not capable to directly access the image rendered on the canvas component. The conventional method to solve this issue is to let the Selenium to pass a javascript script that will encode the image to a string based on encode 64 to the browser, then the Selenium API will receive the encoded string and convert it back to image. However, ThreeJS rendered the scene on a nested canvas, and the conventional does not work with it. Therefore, we added a div in the website, and let animate function encodes the finalized rendered canvas to a string, and update the created div based on the string. 
+
+\begin{lstlisting}[language = Java]
+imgU.innerText = renderer.domElement.toDataURL().substring(22);
+\end{lstlisting}
+
+The drawback of this approach is obvious. The work load of the front end is aggravated, which will take a significant computational power and lower the efficiency of our model. 
+
 \subsection{Game Automation: Selenium API}
 As we known, all the neural networks have to work on given input and will give output in number format. Therefore, we need to build a bridge between the game and neural networks that can pass the game as an input to game and operate game based on the output from neural networks. Because the game we work on is based on browser, we can take a advantage of Selenium API in python to implement this bridge. 
 
-\subsubsection{Setup}
+\subsubsection{Setup Selenium API}
 We work with Chrome browser because it has a complete console for debugging. Another thing we need to connect python and Chrome is a chromedriver. Then the setup process is as simple as below codes, where the driver is everything we need to operate Chrome through python.
 \begin{lstlisting}[language=Python]
     driver = webdriver.Chrome()
@@ -114,10 +170,10 @@ We work with Chrome browser because it has a complete console for debugging. Ano
 We mainly use the \textit{driver} object to implement following operations:
 
 \begin{itemize}
-  \item Fix the browser GUI size and capture the game scene image as the input for CNN
+  \item Because we have created a div element in the web page to receive the encoded canvas image, we can simply access the content of that element by the selenium, and convert it back to an image by the base64 and PIL.Image packages. Finally, we converted to a np array, which is the format that can be understand by the CNN.
   \begin{lstlisting}[language=Python]
-driver.set_window_size(1200, 600)  
-driver.save_screenshot(screen_shot_output)
+img_64 = self.game.driver.find_element_by_id('imgURL').text  
+screen = np.array(Image.open(BytesIO(base64.b64decode(img_64))))
     \end{lstlisting}
   \item Move the character in the game based on the output from model
   \begin{lstlisting}[language=Python]
