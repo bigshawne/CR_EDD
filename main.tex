@@ -646,25 +646,6 @@ env.close()
 \subsubsection{Model Selection}
 As we mentioned before, we are encountering limitations on the training process since our game environment does not work well with Google colab. It takes some amount of time to train each model and check the result. Therefore, we do some model selection by training only 30,000 timesteps with the same set of parameters and keep monitoring the result for DQN, A2C, and PPO so that we can focus on training only one model and tune hyperparameter. During the training process, PPO seems to perform better than the other two since this agent can avoid the tree, which is the most challenging that we were encountering for a long time, while the other two models still get stuck within the tree. Now we will mainly focus on training our agent on the PPO model. \par 
 
-After tuning multiple times, below is the hyperparameter that we set in order to achieve the high score. \par 
-
-\begin{center}
-    \begin{tabular}{ | c | c |} 
-        \hline
-        Action State & Reward \\ 
-        \hline
-        Stay & -10\\ 
-        \hline
-        Forward & +7\\ 
-        \hline
-        Backward & -200 \\ 
-        \hline
-        Left & 0 \\
-        \hline
-        Right & 0 \\ 
-        \hline
-    \end{tabular}   
-\end{center}
 
 \section{Experiments and Results}
 We noticed that there are variables that potentially can affect the performance of our model: the accuracy of the CNN model and the setting of our reward functions. Therefore, we divided into two branches that each branch will check one of the variables. 
@@ -789,7 +770,62 @@ We can tell from the result of Agent 3 that the improvement in score is limited.
 \includegraphics[width=0.5\textwidth]{ThirdAgent.png}
 \end{figure}
 
-\subsubsection{Agent from top view}
+\subsection{Result of the alternative solution: PPO with Top View and Black Background}
+
+In our alternative solutions, we implemented other the reinforcement learning models to try to increase the score of our agent. After multiple attempts, we found that the PPO outperform from the others, and below is the reward functions setting for the agent with PPO model. 
+
+After tuning multiple times, below is the hyperparameter that we set in order to achieve the high score. \par 
+
+\begin{center}
+    \begin{tabular}{ | c | c |} 
+        \hline
+        Action State & Reward \\ 
+        \hline
+        Stay & -10\\ 
+        \hline
+        Forward & +7\\ 
+        \hline
+        Backward & -200 \\ 
+        \hline
+        Left & 0 \\
+        \hline
+        Right & 0 \\ 
+        \hline
+    \end{tabular}   
+\end{center}
+
+As a result, the episode means reward keeps slowly moving up, which can refer to the fact that this agent performs better by getting more and more reward on each episode of training. \par 
+
+\begin{figure}[h]
+    \caption{Episode Mean Reward}
+    \centering
+    \includegraphics[width=0.5\textwidth]{EMR.png}
+\end{figure}
+
+In tem of entropy loss, the agent keeps improving as well by looking at the graph. The line trend keeps moving up to close to zero. \par 
+
+\begin{figure}[h]
+    \caption{Entropy Loss}
+    \centering
+    \includegraphics[width=0.5\textwidth]{EL.png}
+\end{figure}
+
+In terms of score, we do evaluate after training this agent more than 160,000 timesteps since we want the model to observe the agent first. Below is the game score while training more than some amount of timesteps. The result that we got is better than the midterm since the maximum score that we got from the midterm is around 18, but now we are able to obtain the game score more than 18. \par 
+
+\begin{figure}[H]
+    \caption{Training 160000 timesteps}
+    \centering
+    \includegraphics[width=0.5\textwidth]{PPO_Score.png}
+\end{figure}
+
+Below is the result after training more than 700000 timesteps, we got better results. As you can see in the result, the agent can get a higher average score. Our agent often got more than 15 score on the game, and it keeps getting higher scores. \par 
+
+\begin{figure}[H]
+    \caption{Training 160000 timesteps}
+    \centering
+    \includegraphics[width=0.5\textwidth]{Final_Score.png}
+\end{figure}
+
 
 % \subsubsection{Conclusion}
 % From testing these agents with different reward functions, we have not be able to find a clear direction for the parameter tuning of the reward functions. However, we noticed that the third agent indicated that there can be relationship between reward function and the changes in score. There is another problem is that rounds of game played by each agent is quite low, which is caused by the limitation of computing power of our devices. Hopeful, in the next steps, we can find some ways to improve our computing power, and be able to find a clear direction for parameter tuning with enough rounds of game playing.

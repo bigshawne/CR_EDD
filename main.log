@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.7)  4 MAY 2021 03:08
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.7)  4 MAY 2021 15:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -657,22 +657,36 @@ File: A2C_eq.png Graphic file (type bmp)
  [17] [18] [19]
 File: ControlAgent.png Graphic file (type bmp)
 <ControlAgent.png>
- [20]
 File: trap.png Graphic file (type bmp)
 <trap.png>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[20]
 File: SecondAgent.png Graphic file (type bmp)
 <SecondAgent.png>
  [21]
 File: ThirdAgent.png Graphic file (type bmp)
 <ThirdAgent.png>
- [22] (./main.aux) ) 
+ [22]
+File: EMR.png Graphic file (type bmp)
+<EMR.png>
+File: EL.png Graphic file (type bmp)
+<EL.png>
+File: PPO_Score.png Graphic file (type bmp)
+<PPO_Score.png>
+ [23]
+File: Final_Score.png Graphic file (type bmp)
+<Final_Score.png>
+ [24] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 18386 strings out of 479418
- 362771 string characters out of 5884586
- 930284 words of memory out of 5000000
- 35532 multiletter control sequences out of 15000+600000
+ 18410 strings out of 479418
+ 363065 string characters out of 5884586
+ 930285 words of memory out of 5000000
+ 35552 multiletter control sequences out of 15000+600000
  538924 words of font info for 68 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  68i,19n,71p,940b,1586s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (22 pages).
+Output written on main.pdf (24 pages).
