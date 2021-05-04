@@ -571,6 +571,29 @@ model.save("../model/ppo")
 env.close()
 \end{lstlisting}
 
+\subsubsection{Model Selection}
+As we mentioned before, we are encountering limitations on the training process since our game environment does not work well with Google colab. It takes some amount of time to train each model and check the result. Therefore, we do some model selection by training only 30,000 timesteps with the same set of parameters and keep monitoring the result for DQN, A2C, and PPO so that we can focus on training only one model and tune hyperparameter. During the training process, PPO seems to perform better than the other two since this agent can avoid the tree, which is the most challenging that we were encountering for a long time, while the other two models still get stuck within the tree. Now we will mainly focus on training our agent on the PPO model. \par 
+
+After tuning multiple times, below is the hyperparameter that we set in order to achieve the high score. \par 
+
+\begin{center}
+    \begin{tabular}{ | c | c |} 
+        \hline
+        Action State & Reward \\ 
+        \hline
+        Stay & -10\\ 
+        \hline
+        Forward & +7\\ 
+        \hline
+        Backward & -200 \\ 
+        \hline
+        Left & 0 \\
+        \hline
+        Right & 0 \\ 
+        \hline
+    \end{tabular}   
+\end{center}
+
 \section{Experiments and Results}
 We noticed that there are variables that potentially can affect the performance of our model: the accuracy of the CNN model and the setting of our reward functions. Therefore, we divided into two branches that each branch will check one of the variables. 
 
