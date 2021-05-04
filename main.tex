@@ -70,6 +70,7 @@
 \maketitle
 
 \tableofcontents
+\newpage 
 
 \section{Background and Overview}
 \textit{Crossy Road} is an arcade video game released on 20 November 2014, developed and published by Hipster Whale. The game has been described as “endless Frogger”. The objective of \textit{Crossy Road} is to cross an endless highway or series of roads and avoid obstacles as far as possible without dying. The game we chose is a simplified browser version of the original \textit{Crossy Road}, where the obstacles are restricted to two types: the static tree that can block the movement, and the moving cars on the road that potentially can terminate the character.
@@ -650,7 +651,7 @@ As we mentioned before, we are encountering limitations on the training process 
 \section{Experiments and Results}
 We noticed that there are variables that potentially can affect the performance of our model: the accuracy of the CNN model and the setting of our reward functions. Therefore, we divided into two branches that each branch will check one of the variables. 
 
-\subsection{Reward Function Setting}
+\subsection{Result of the Current Agent}
 We checked three different sets of reward functions
 
 \subsubsection{The control group}
@@ -872,6 +873,16 @@ Below is the result after training more than 700000 timesteps, we got better res
 
 % \subsubsection{Conclusion}
 % Based on the result, we noticed that there is improvements compared with other agents. However, we still have concerns. This agent changed not only  image processing but also the reward function settings. Thus, we could not be able to say that we have found a clear direction for future parameter tuning. 
+
+\section{Future Work}
+In the upcoming work, we will focus on the following aspects:
+
+\begin{itemize}
+    \item We will keep training our agent on PPO and try tune hyper parameters since as the current result on Figure 16 shows that we keep getting better and better score.
+    \item Game state design. A large proportion of error comes from image processing and object detection. Judging from the results, it seems that our agent still performs badly when the game scene is simple. We think that we should improve the way we transform game play scene into states and change the structure of CNN.
+    \item Training efficiency. Due to the restrictions of our training equipment, the training process of our agent is slow and the training of our models are still limited to 30000 frames. We might try other training methods or apply Virtual Machine and Cloud Server to speed up our training.
+    \item We'll be keep on trying other methods like transfer learning and genetic algorithm. Recent research shows that training on a easier game and then apply it on the target game will be beneficial. So we’ll try to apply AI agent that has already been trained on similar games like \textit{Frogger}, and then train it on \textit{Crossy Road}. Also genetic algorithm is widely used in implementing game AI, applying it with our agent might give a boost in performance.
+\end{itemize}
 
 % \section{Current Problems and Future Improvement}
 
