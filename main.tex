@@ -786,11 +786,13 @@ After tuning multiple times, below is the hyperparameter that we set in order to
         \hline
         Forward & +7\\ 
         \hline
-        Backward & -200 \\ 
+        Backward & -10 \\ 
         \hline
         Left & 0 \\
         \hline
         Right & 0 \\ 
+        \hline
+        Dead & -200\\
         \hline
     \end{tabular}   
 \end{center}
@@ -822,7 +824,7 @@ In terms of score, we do evaluate after training this agent more than 160,000 ti
 Below is the result after training more than 700000 timesteps, we got better results. As you can see in the result, the agent can get a higher average score. Our agent often got more than 15 score on the game, and it keeps getting higher scores. \par 
 
 \begin{figure}[H]
-    \caption{Training 160000 timesteps}
+    \caption{Training 700000 timesteps}
     \centering
     \includegraphics[width=0.5\textwidth]{Final_Score.png}
 \end{figure}
